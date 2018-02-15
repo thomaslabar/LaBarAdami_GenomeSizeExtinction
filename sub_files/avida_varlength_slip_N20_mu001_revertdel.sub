@@ -1,0 +1,11 @@
+#!/bin/bash -login
+ 
+#PBS -l walltime=3:59:00,nodes=1:ppn=1,mem=2gb
+#PBS -j oe
+#PBS -t 25047-25146
+
+### change to the working directory where your code is located
+cd ${SCRATCH}/genomesize_extinction/avida/config_files
+mkdir -p ../data_varlength_slip_N20_mu001_revertdel
+### call your executable
+./avida -set DATA_DIR ../data_varlength_slip_N20_mu001_revertdel/replicate_${PBS_ARRAYID} -set RANDOM_SEED ${PBS_ARRAYID} -set WORLD_X 20 -set WORLD_Y 1 -set BIRTH_METHOD 4 -set VERBOSITY 0 -set COPY_MUT_PROB 0.00 -set DIV_MUT_PROB 0.01  -set DIVIDE_INS_PROB 0.0 -set DIVIDE_DEL_PROB 0.0 -set DIVIDE_SLIP_PROB 0.01 -set REQUIRE_EXACT_COPY 1 -set REVERT_DETRIMENTAL 1.0
